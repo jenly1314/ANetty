@@ -110,6 +110,14 @@ Netty客户端：
 #### v1.0.0：2019-3-30
 *  ANetty初始版本
 
+## 赞赏
+如果您喜欢ANetty，或感觉ANetty帮助到了您，可以点右上角“Star”支持一下，您的支持就是我的动力，谢谢 :smiley:<p>
+也可以扫描下面的二维码，请作者喝杯咖啡 :coffee:
+
+   ![](https://image-1252383324.cos.ap-guangzhou.myqcloud.com/pay/wxpay.png)
+   ![](https://image-1252383324.cos.ap-guangzhou.myqcloud.com/pay/alipay.png)
+   ![](	https://image-1252383324.cos.ap-guangzhou.myqcloud.com/pay/qqpay.png)
+
 
 ## 关于我
    Name: <a title="关于作者" href="https://about.me/jenly1314" target="_blank">Jenly</a>
@@ -122,6 +130,8 @@ Netty客户端：
 
    微信公众号:
 
-   ![公众号](http://olambmg9j.bkt.clouddn.com/jenly666.jpg)
+   ![公众号](https://image-1252383324.cos.ap-guangzhou.myqcloud.com/jenly666.jpg)
 
    加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">20867961</a>
+
+
