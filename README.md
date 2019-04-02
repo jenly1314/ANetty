@@ -129,9 +129,9 @@ Netty客户端：
    Github: <a title="Github开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
 
    加入QQ群: <a title="点击加入QQ群" href="http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad" target="_blank">20867961</a>
-
-   <img src="https://image-1252383324.cos.ap-guangzhou.myqcloud.com/jenly666.png">
-   <img src="https://image-1252383324.cos.ap-guangzhou.myqcloud.com/qqgourp.png">
-
+   <div>
+       <img src="https://image-1252383324.cos.ap-guangzhou.myqcloud.com/jenly666.png">
+       <img src="https://image-1252383324.cos.ap-guangzhou.myqcloud.com/qqgourp.png">
+   </div>
 
 
