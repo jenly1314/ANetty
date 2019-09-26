@@ -3,11 +3,12 @@
 ![Image](app/src/main/ic_launcher-web.png)
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/ANetty/master/app/release/app-release.apk)
-[![Jitpack](https://jitpack.io/v/jenly1314/ANetty.svg)](https://jitpack.io/#jenly1314/ANetty)
+[![JitPack](https://jitpack.io/v/jenly1314/ANetty.svg)](https://jitpack.io/#jenly1314/ANetty)
 [![CI](https://travis-ci.org/jenly1314/ANetty.svg?branch=master)](https://travis-ci.org/jenly1314/ANetty)
+[![CircleCI](https://circleci.com/gh/jenly1314/ANetty.svg?style=svg)](https://circleci.com/gh/jenly1314/ANetty)
 [![API](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)](https://android-arsenal.com/api?level=16)
 [![License](https://img.shields.io/badge/license-Apche%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0)
-[![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](http://blog.csdn.net/jenly121)
+[![Blog](https://img.shields.io/badge/blog-Jenly-9933CC.svg)](https://jenly1314.github.io/)
 [![QQGroup](https://img.shields.io/badge/QQGroup-20867961-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=8fcc6a2f88552ea44b1411582c94fd124f7bb3ec227e2a400dbbfaad3dc2f5ad)
 
 ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以快速开发高性能，高可靠性的网络交互。在保证易于开发的同时还保证其应用的性能，稳定性和伸缩性。
@@ -24,17 +25,17 @@ ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以�
     <dependency>
       <groupId>com.king.anetty</groupId>
       <artifactId>anetty</artifactId>
-      <version>1.0.0</version>
+      <version>1.0.1</version>
       <type>pom</type>
     </dependency>
 ```
 ### Gradle:
 ```gradle
-    implementation 'com.king.anetty:anetty:1.0.0'
+    implementation 'com.king.anetty:anetty:1.0.1'
 ```
 ### Lvy:
 ```lvy
-    <dependency org='com.king.anetty' name='anetty' rev='1.0.0'>
+    <dependency org='com.king.anetty' name='anetty' rev='1.0.1'>
       <artifact name='$AID' ext='pom'></artifact>
     </dependency>
 ```
@@ -46,11 +47,6 @@ ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以�
             maven { url 'https://dl.bintray.com/jenly/maven' }
         }
     }
-```
-
-## 引入的库：
-```gradle
-    compileOnly 'com.android.support:appcompat-v7:28.0.0'
 ```
 
 ## 示例
@@ -107,6 +103,10 @@ Netty客户端：
 
 ## 版本记录
 
+#### v1.0.1：2019-9-26
+*  移除support依赖
+*  更新Netty依赖至4.1.42.Final
+
 #### v1.0.0：2019-3-30
 *  ANetty初始版本
 
@@ -125,6 +125,8 @@ Netty客户端：
    Email: <a title="欢迎邮件与我交流" href="mailto:jenly1314@gmail.com" target="_blank">jenly1314#gmail.com</a> / <a title="给我发邮件" href="mailto:jenly1314@vip.qq.com" target="_blank">jenly1314#vip.qq.com</a>
 
    CSDN: <a title="CSDN博客" href="http://blog.csdn.net/jenly121" target="_blank">jenly121</a>
+
+   博客园: <a title="博客园" href="https://www.cnblogs.com/jenly" target="_blank">jenly</a>
 
    Github: <a title="Github开源项目" href="https://github.com/jenly1314" target="_blank">jenly1314</a>
 

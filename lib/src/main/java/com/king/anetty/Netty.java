@@ -17,12 +17,9 @@
  */
 package com.king.anetty;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+
 
 import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelPromise;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -34,7 +31,7 @@ public interface Netty {
      * @param host
      * @param port
      */
-    void connect(@NonNull String host,int port);
+    void connect(String host, int port);
 
     /**
      * 重连
@@ -45,7 +42,7 @@ public interface Netty {
      * 发送消息
      * @param msg
      */
-    void sendMessage(@NonNull Object msg);
+    void sendMessage(Object msg);
 
     /**
      * 连接监听

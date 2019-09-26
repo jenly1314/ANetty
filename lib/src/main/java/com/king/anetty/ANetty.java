@@ -21,7 +21,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.king.anetty.handler.StringChannelHandler;
@@ -48,9 +47,9 @@ public class ANetty implements Netty {
 
     public static final String TAG = ANetty.class.getSimpleName();
 
-    private static final int NETTY_INIT = 0X01;
-    private static final int NETTY_CONNECT = 0X02;
-    private static final int NETTY_SEND_MESSAGE = 0X03;
+    private static final int NETTY_INIT = 0x01;
+    private static final int NETTY_CONNECT = 0x02;
+    private static final int NETTY_SEND_MESSAGE = 0x03;
 
 
     public static final String DEFAULT_CHARSET = "UTF-8";
@@ -113,8 +112,8 @@ public class ANetty implements Netty {
                         .addLast(new StringDecoder())
                         .addLast(new StringChannelHandler(){
                             @Override
-                            protected void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
-                                super.messageReceived(ctx, msg);
+                            protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+                                super.channelRead0(ctx, msg);
                                 if(isDebug){
                                     Log.d(TAG,"Received message:" + msg);
                                 }
@@ -145,7 +144,7 @@ public class ANetty implements Netty {
      * @param channelInitializer {@link ChannelInitializer}
      * @param isDebug
      */
-    public ANetty(@NonNull ChannelInitializer<SocketChannel> channelInitializer,boolean isDebug){
+    public ANetty(ChannelInitializer<SocketChannel> channelInitializer, boolean isDebug){
         this.isDebug = isDebug;
         this.mChannelInitializer = channelInitializer;
         initHandlerThread();
@@ -156,7 +155,7 @@ public class ANetty implements Netty {
      * 构造
      * @param bootstrap {@link Bootstrap}
      */
-    public ANetty(@NonNull Bootstrap bootstrap){
+    public ANetty(Bootstrap bootstrap){
         this(bootstrap,false);
     }
 
@@ -165,7 +164,7 @@ public class ANetty implements Netty {
      * @param bootstrap {@link Bootstrap}
      * @param isDebug
      */
-    public ANetty(@NonNull Bootstrap bootstrap,boolean isDebug){
+    public ANetty(Bootstrap bootstrap,boolean isDebug){
         this.mBootstrap = bootstrap;
         this.isDebug = isDebug;
         this.mGroup = bootstrap.group();
@@ -259,7 +258,7 @@ public class ANetty implements Netty {
     }
 
     @Override
-    public void connect(@NonNull String host, int port) {
+    public void connect(String host, int port) {
         if(isConnected()){
             return;
         }
@@ -275,7 +274,7 @@ public class ANetty implements Netty {
     }
 
     @Override
-    public void sendMessage(@NonNull Object msg) {
+    public void sendMessage(Object msg) {
         mHandler.obtainMessage(NETTY_SEND_MESSAGE,msg).sendToTarget();
     }
 

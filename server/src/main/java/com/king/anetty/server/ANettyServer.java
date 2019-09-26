@@ -53,7 +53,7 @@ public class ANettyServer implements NettyServer {
         mGroup = new NioEventLoopGroup();
         mBootstrap.group(mGroup,mWorkerGroup)
                 .channel(NioServerSocketChannel.class)
-                .option(ChannelOption.TCP_NODELAY, true)// 消息立即发出去
+                .option(ChannelOption.TCP_NODELAY, true)//消息立即发出去
                 .option(ChannelOption.SO_REUSEADDR, true)
                 .childOption(ChannelOption.SO_KEEPALIVE, true)//保持长链接
                 .handler(new LoggingHandler(LogLevel.INFO))
@@ -72,7 +72,8 @@ public class ANettyServer implements NettyServer {
                                 .addLast(new StringChannelHandler(){
 
                                     @Override
-                                    protected void messageReceived(ChannelHandlerContext ctx, String msg) throws Exception {
+                                    protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
+                                        super.channelRead0(ctx,msg);
                                         System.out.println("Received message:" + msg);
                                         //接收到客户端消息后，直接回复
                                         ctx.writeAndFlush(ch.remoteAddress() + ":" + msg);
@@ -108,7 +109,7 @@ public class ANettyServer implements NettyServer {
     }
 
     public static void main(String[] args) throws Exception{
-        //启动Netty服务
+        //启动Netty服务  你的本地IP,端口
         new ANettyServer().start("192.168.100.48",6000);
     }
 

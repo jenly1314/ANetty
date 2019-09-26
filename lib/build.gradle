@@ -29,7 +29,6 @@ android {
 
     lintOptions {
         abortOnError false
-        warning 'InvalidPackage'
     }
 }
 
@@ -38,6 +37,5 @@ dependencies {
     testImplementation deps.test.junit
     androidTestImplementation deps.test.runner
     androidTestImplementation deps.test.espresso
-    compileOnly deps.support.appcompat
     api deps.netty
 }
