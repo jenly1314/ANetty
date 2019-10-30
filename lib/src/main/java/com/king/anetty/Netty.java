@@ -45,10 +45,16 @@ public interface Netty {
     void sendMessage(Object msg);
 
     /**
-     * 连接监听
+     * 设置连接监听
      * @param listener
      */
     void setOnConnectListener(OnConnectListener listener);
+
+    /**
+     * 设置消息发送监听
+     * @param listener
+     */
+    void setOnSendMessageListener(OnSendMessageListener listener);
 
     /**
      * 关闭
@@ -87,8 +93,18 @@ public interface Netty {
         void onError(Exception e);
     }
 
+    /**
+     * 通道消息处理（接收消息）
+     */
     interface OnChannelHandler{
         void onMessageReceived(String msg);
         void onExceptionCaught(Throwable e);
+    }
+
+    /**
+     * 发送消息监听
+     */
+    interface OnSendMessageListener{
+        void onSendMessage(Object msg,boolean success);
     }
 }

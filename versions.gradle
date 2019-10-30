@@ -1,7 +1,7 @@
 //App
 def app_version = [:]
-app_version.versionCode = 2
-app_version.versionName = "1.0.1"
+app_version.versionCode = 3
+app_version.versionName = "1.0.2"
 ext.app_version = app_version
 
 //build version
@@ -40,7 +40,7 @@ test.runner = "com.android.support.test:runner:$versions.runner"
 test.espresso = "com.android.support.test.espresso:espresso-core:$versions.espresso"
 deps.test = test
 
-deps.netty = 'io.netty:netty-all:4.1.42.Final'
+deps.netty = 'io.netty:netty-all:4.1.43.Final'
 
 ext.deps = deps
 

@@ -86,6 +86,8 @@ public class ANetty implements Netty {
 
     private OnConnectListener mOnConnectListener;
 
+    private OnSendMessageListener mOnSendMessageListener;
+
     /**
      * 构造
      * @param onChannelHandler {@link OnChannelHandler}
@@ -167,7 +169,7 @@ public class ANetty implements Netty {
     public ANetty(Bootstrap bootstrap,boolean isDebug){
         this.mBootstrap = bootstrap;
         this.isDebug = isDebug;
-        this.mGroup = bootstrap.group();
+        this.mGroup = bootstrap.config().group();
         initHandlerThread();
     }
 
@@ -234,7 +236,7 @@ public class ANetty implements Netty {
         } catch (Exception e) {
             e.printStackTrace();
             if(mOnConnectListener!=null){
-                mOnConnectListener.onError(e);
+                mMainHandler.post(()-> mOnConnectListener.onError(e));
             }
         }
     }
@@ -243,13 +245,18 @@ public class ANetty implements Netty {
         try{
             if(isOpen()) {
                 mChannelFuture.channel().writeAndFlush(msg).addListener(future -> {
+                    boolean isSuccess = future.isSuccess();
                     if (isDebug) {
-                        if (future.isSuccess()) {
+                        if (isSuccess) {
                             Log.d(TAG, "Send message:" + msg);
                         }else{
                             Log.d(TAG, "Send failed.");
                         }
                     }
+                    if(mOnSendMessageListener!=null){
+                        mMainHandler.post(() -> mOnSendMessageListener.onSendMessage(msg,isSuccess));
+                    }
+
                 }).sync();
             }
         }catch (Exception e){
@@ -281,6 +288,11 @@ public class ANetty implements Netty {
     @Override
     public void setOnConnectListener(OnConnectListener listener) {
         this.mOnConnectListener = listener;
+    }
+
+    @Override
+    public void setOnSendMessageListener(OnSendMessageListener listener) {
+        this.mOnSendMessageListener = listener;
     }
 
     @Override

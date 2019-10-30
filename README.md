@@ -25,17 +25,17 @@ ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以�
     <dependency>
       <groupId>com.king.anetty</groupId>
       <artifactId>anetty</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
       <type>pom</type>
     </dependency>
 ```
 ### Gradle:
 ```gradle
-    implementation 'com.king.anetty:anetty:1.0.1'
+    implementation 'com.king.anetty:anetty:1.0.2'
 ```
 ### Lvy:
 ```lvy
-    <dependency org='com.king.anetty' name='anetty' rev='1.0.1'>
+    <dependency org='com.king.anetty' name='anetty' rev='1.0.2'>
       <artifact name='$AID' ext='pom'></artifact>
     </dependency>
 ```
@@ -102,6 +102,10 @@ Netty客户端：
 更多使用详情，请查看[app](app)中的源码使用示例
 
 ## 版本记录
+
+#### v1.0.2：2019-10-30
+*  新增setOnSendMessageListener方法
+*  更新Netty依赖至4.1.43.Final
 
 #### v1.0.1：2019-9-26
 *  移除support依赖

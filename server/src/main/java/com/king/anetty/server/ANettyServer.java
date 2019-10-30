@@ -110,7 +110,7 @@ public class ANettyServer implements NettyServer {
 
     public static void main(String[] args) throws Exception{
         //启动Netty服务  你的本地IP,端口
-        new ANettyServer().start("192.168.100.48",6000);
+        new ANettyServer().start("192.168.100.49",6000);
     }
 
 }
