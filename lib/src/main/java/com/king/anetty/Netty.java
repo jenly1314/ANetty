@@ -20,6 +20,7 @@ package com.king.anetty;
 
 
 import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelHandlerContext;
 
 /**
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
@@ -97,8 +98,8 @@ public interface Netty {
      * 通道消息处理（接收消息）
      */
     interface OnChannelHandler{
-        void onMessageReceived(String msg);
-        void onExceptionCaught(Throwable e);
+        void onMessageReceived(ChannelHandlerContext ctx,String msg);
+        void onExceptionCaught(ChannelHandlerContext ctx,Throwable e);
     }
 
     /**
@@ -106,5 +107,6 @@ public interface Netty {
      */
     interface OnSendMessageListener{
         void onSendMessage(Object msg,boolean success);
+        void onException(Throwable e);
     }
 }

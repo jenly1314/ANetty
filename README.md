@@ -25,17 +25,17 @@ ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以�
     <dependency>
       <groupId>com.king.anetty</groupId>
       <artifactId>anetty</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.3</version>
       <type>pom</type>
     </dependency>
 ```
 ### Gradle:
 ```gradle
-    implementation 'com.king.anetty:anetty:1.0.2'
+    implementation 'com.king.anetty:anetty:1.0.3'
 ```
 ### Lvy:
 ```lvy
-    <dependency org='com.king.anetty' name='anetty' rev='1.0.2'>
+    <dependency org='com.king.anetty' name='anetty' rev='1.0.3'>
       <artifact name='$AID' ext='pom'></artifact>
     </dependency>
 ```
@@ -66,12 +66,12 @@ Netty客户端：
     //初始化Netty
     mNetty = new ANetty(new Netty.OnChannelHandler() {
         @Override
-        public void onMessageReceived(String msg) {
+        public void onMessageReceived(ChannelHandlerContext ctx,String msg) {
             //TODO 接收到消息
         }
 
         @Override
-        public void onExceptionCaught(Throwable e) {
+        public void onExceptionCaught(ChannelHandlerContext ctx,Throwable e) {
 
         }
     }, true);
@@ -93,6 +93,18 @@ Netty客户端：
             Log.e(ANetty.TAG,e.getMessage());
         }
     });
+    //设置发送消息监听
+    mNetty.setOnSendMessageListener(new Netty.OnSendMessageListener() {
+        @Override
+        public void onSendMessage(Object msg, boolean success) {
+            //TODO 发送消息，根据success判断是否发送成功
+        }
+
+        @Override
+        public void onException(Throwable e) {
+            //TODO 异常
+        }
+    });
 
     //初始化后，连接Netty
     mNetty.connect(String host,int port);
@@ -106,6 +118,9 @@ Netty客户端：
 
 
 ## 版本记录
+
+#### v1.0.3：2019-11-13
+*  OnChannelHandler接口内方法新增ChannelHandlerContext参数
 
 #### v1.0.2：2019-10-30
 *  新增setOnSendMessageListener方法

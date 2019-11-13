@@ -30,6 +30,8 @@ import android.widget.Toast;
 import com.king.anetty.ANetty;
 import com.king.anetty.Netty;
 
+import io.netty.channel.ChannelHandlerContext;
+
 public class MainActivity extends AppCompatActivity {
 
     private EditText etHost;
@@ -68,13 +70,14 @@ public class MainActivity extends AppCompatActivity {
     private void initNetty(){
         mNetty = new ANetty(new Netty.OnChannelHandler() {
             @Override
-            public void onMessageReceived(String msg) {
+            public void onMessageReceived(ChannelHandlerContext ctx, String msg) {
                 //接收到消息
                 tvContent.append(msg + "\n");
             }
 
             @Override
-            public void onExceptionCaught(Throwable e) {
+            public void onExceptionCaught(ChannelHandlerContext ctx,Throwable e) {
+                Log.e(ANetty.TAG,e.getMessage());
 
             }
         }, true);
@@ -96,6 +99,24 @@ public class MainActivity extends AppCompatActivity {
             public void onError(Exception e) {
                 //TODO 连接异常
                 showToast("连接异常");
+                Log.e(ANetty.TAG,e.getMessage());
+            }
+        });
+
+        mNetty.setOnSendMessageListener(new Netty.OnSendMessageListener() {
+            @Override
+            public void onSendMessage(Object msg, boolean success) {
+                //发送消息
+//                if(success){
+//                    showToast("发送成功");
+//                }else{
+//                    showToast("发送失败");
+//                }
+            }
+
+            @Override
+            public void onException(Throwable e) {
+                //异常
                 Log.e(ANetty.TAG,e.getMessage());
             }
         });

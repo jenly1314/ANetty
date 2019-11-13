@@ -120,7 +120,7 @@ public class ANetty implements Netty {
                                     Log.d(TAG,"Received message:" + msg);
                                 }
                                 if(onChannelHandler!=null){
-                                    mMainHandler.post(() -> onChannelHandler.onMessageReceived(msg));
+                                    mMainHandler.post(() -> onChannelHandler.onMessageReceived(ctx,msg));
                                 }
                             }
 
@@ -131,7 +131,7 @@ public class ANetty implements Netty {
                                     Log.w(TAG,cause.getMessage());
                                 }
                                 if(onChannelHandler!=null){
-                                    mMainHandler.post(() -> onChannelHandler.onExceptionCaught(cause));
+                                    mMainHandler.post(() -> onChannelHandler.onExceptionCaught(ctx,cause));
                                 }
                             }
                         });
@@ -258,9 +258,16 @@ public class ANetty implements Netty {
                     }
 
                 }).sync();
+            }else{
+                if(mOnSendMessageListener!=null){
+                    mMainHandler.post(() -> mOnSendMessageListener.onSendMessage(msg,false));
+                }
             }
         }catch (Exception e){
             e.printStackTrace();
+            if(mOnSendMessageListener!=null){
+                mMainHandler.post(() -> mOnSendMessageListener.onException(e));
+            }
         }
     }
 
@@ -299,7 +306,10 @@ public class ANetty implements Netty {
     public void close() {
         if(isOpen()){
             mChannelFuture.channel().close();
-            Log.d(TAG,"Netty channel connect closed.");
+            if(isDebug){
+                Log.d(TAG,"Netty channel connect closed.");
+            }
+
         }
     }
 
@@ -307,7 +317,9 @@ public class ANetty implements Netty {
     public void disconnect() {
         if(isConnected()){
             mChannelFuture.channel().disconnect();
-            Log.d(TAG,"Netty channel disconnected.");
+            if(isDebug) {
+                Log.d(TAG, "Netty channel disconnected.");
+            }
         }
     }
 
