@@ -18,10 +18,18 @@
 package com.king.anetty.server;
 
 /**
+ * Netty Server
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ * <p>
+ * <a href="https://github.com/jenly1314">Follow me</a>
  */
 public interface NettyServer {
 
-
-    void start(String host,int port);
+    /**
+     * 启动服务
+     *
+     * @param port 监听端口
+     */
+    void start(int port);
 }

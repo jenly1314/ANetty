@@ -17,6 +17,8 @@
  */
 package com.king.anetty.server;
 
+import com.king.anetty.server.handler.StringChannelHandler;
+
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
@@ -33,8 +35,11 @@ import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
 /**
- * Netty服务端
+ * Netty服务端；服务端一般都依赖项目对应的业务。此Netty服务端的实现主要是为了演示和测试与ANetty客户端进行通信。
+ *
  * @author <a href="mailto:jenly1314@gmail.com">Jenly</a>
+ * <p>
+ * <a href="https://github.com/jenly1314">Follow me</a>
  */
 public class ANettyServer implements NettyServer {
 
@@ -43,46 +48,49 @@ public class ANettyServer implements NettyServer {
     private EventLoopGroup mWorkerGroup;
     private EventLoopGroup mGroup;
 
-    public ANettyServer(){
+    public ANettyServer() {
         init();
     }
 
-    private void init(){
+    /**
+     * 初始化
+     */
+    private void init() {
         mBootstrap = new ServerBootstrap();
-        mWorkerGroup= new NioEventLoopGroup();
+        mWorkerGroup = new NioEventLoopGroup();
         mGroup = new NioEventLoopGroup();
-        mBootstrap.group(mGroup,mWorkerGroup)
+        mBootstrap.group(mGroup, mWorkerGroup)
                 .channel(NioServerSocketChannel.class)
-                .option(ChannelOption.TCP_NODELAY, true)//消息立即发出去
+                .option(ChannelOption.TCP_NODELAY, true) // 消息立即发出去
                 .option(ChannelOption.SO_REUSEADDR, true)
-                .childOption(ChannelOption.SO_KEEPALIVE, true)//保持长链接
+                .childOption(ChannelOption.SO_KEEPALIVE, true) // 保持长链接
                 .handler(new LoggingHandler(LogLevel.INFO))
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         System.out.println("connected:" + ch.remoteAddress());
-                        //建立管道
+                        // 建立管道
                         ChannelPipeline channelPipeline = ch.pipeline();
-                        //消息结束分隔符
+                        // 消息结束分隔符
 //                        DelimiterBasedFrameDecoder delimiterBasedFrameDecoder = new DelimiterBasedFrameDecoder(131072,Unpooled.wrappedBuffer(new byte[]{0x04}));
-                        //添加相关编码器，解码器，处理器等
+                        // 添加相关编码器，解码器，处理器等
                         channelPipeline
                                 .addLast(new StringEncoder())
                                 .addLast(new StringDecoder())
-                                .addLast(new StringChannelHandler(){
+                                .addLast(new StringChannelHandler() {
 
                                     @Override
                                     protected void channelRead0(ChannelHandlerContext ctx, String msg) throws Exception {
-                                        super.channelRead0(ctx,msg);
+                                        super.channelRead0(ctx, msg);
                                         System.out.println("Received message:" + msg);
-                                        //接收到客户端消息后，直接回复
-                                        ctx.writeAndFlush(ch.remoteAddress() + ":" + msg);
+                                        // 接收到客户端消息后，直接回复
+                                        ctx.writeAndFlush(ch.remoteAddress() + ": " + msg);
                                     }
 
                                     @Override
                                     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
                                         super.exceptionCaught(ctx, cause);
-
+                                        System.out.println("exceptionCaught:" + cause.getMessage());
                                     }
                                 });
                     }
@@ -90,27 +98,27 @@ public class ANettyServer implements NettyServer {
     }
 
     @Override
-    public void start(String host,int port) {
+    public void start(int port) {
         try {
-            mChannelFuture = mBootstrap.localAddress(host,port).bind().addListener(future -> {
-                if(future.isSuccess()){
+            mChannelFuture = mBootstrap.bind(port).addListener(future -> {
+                if (future.isSuccess()) {
                     System.out.println("Server start success.");
-                }else{
+                } else {
                     System.out.println("Server start failed.");
                 }
             }).sync();
             mChannelFuture.channel().closeFuture().sync();
-            System.out.println("Server connect closed.");
+            System.out.println("Server connection is closed.");
         } catch (Exception e) {
             e.printStackTrace();
-        }finally {
+        } finally {
             mGroup.shutdownGracefully();
         }
     }
 
-    public static void main(String[] args) throws Exception{
-        //启动Netty服务  你的本地IP,端口
-        new ANettyServer().start("192.168.100.49",6000);
+    public static void main(String[] args) throws Exception {
+        // 启动Netty服务；你本地的监听端口
+        new ANettyServer().start(6000);
     }
 
 }

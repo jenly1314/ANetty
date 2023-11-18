@@ -1,112 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="30dp"
-    tools:context=".MainActivity">
-
+    android:layout_margin="@dimen/dp_30"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <TextView
+        android:id="@+id/tvLabelHost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="连接地址："
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/etHost"
+        android:padding="@dimen/dp_10"/>
     <EditText
         android:id="@+id/etHost"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:maxLength="60"
-        android:minWidth="130dp"
-        android:padding="6dp"
         android:singleLine="true"
-        android:text="127.0.0.1"
-        android:textSize="18sp"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/tv"/>
-
+        android:inputType="numberDecimal"
+        android:digits="@string/digits_ip"
+        android:layout_marginTop="@dimen/dp_6"
+        android:textSize="15sp"
+        android:background="@drawable/et_bg"
+        app:layout_constraintLeft_toRightOf="@+id/tvLabelHost"
+        app:layout_constraintRight_toLeftOf="@+id/btnStart"
+        app:layout_constraintTop_toTopOf="@+id/tvLabelHost"
+        android:padding="@dimen/dp_6"
+        android:hint="IP地址"/>
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tvLabelPort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:text=":"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@+id/etHost"
-        app:layout_constraintRight_toLeftOf="@+id/etPort"/>
-
+        android:gravity="right"
+        app:layout_constraintLeft_toLeftOf="@+id/tvLabelHost"
+        app:layout_constraintTop_toTopOf="@+id/etPort"
+        app:layout_constraintRight_toRightOf="@+id/tvLabelHost"
+        app:layout_constraintBottom_toBottomOf="@+id/etPort"
+        android:text="连接端口："
+        android:padding="@dimen/dp_10"/>
     <EditText
         android:id="@+id/etPort"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
-        android:maxLength="5"
-        android:minWidth="50dp"
-        android:padding="6dp"
+        android:minWidth="@dimen/dp_60"
+        android:maxWidth="@dimen/dp_80"
         android:singleLine="true"
-        android:text="6000"
-        android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@+id/tv"
-        app:layout_constraintRight_toRightOf="parent"/>
-
+        android:maxLength="5"
+        android:inputType="number"
+        android:layout_marginTop="@dimen/dp_6"
+        android:textSize="15sp"
+        android:background="@drawable/et_bg"
+        app:layout_constraintLeft_toLeftOf="@+id/etHost"
+        app:layout_constraintTop_toBottomOf="@+id/etHost"
+        android:padding="@dimen/dp_6"
+        android:hint="端口"/>
     <Button
-        android:id="@+id/btnConnect"
-        style="@style/OnClick"
-        android:layout_width="match_parent"
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="连接Netty"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="连接"
+        android:layout_marginLeft="@dimen/dp_10"
+        app:layout_constraintLeft_toRightOf="@+id/etHost"
+        app:layout_constraintTop_toTopOf="@+id/etHost"
+        app:layout_constraintBottom_toBottomOf="@+id/etHost"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etHost"/>
-
+        style="@style/OnClick"/>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="@dimen/dp_20"
+        android:layout_height="@dimen/dp_20"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintRight_toRightOf="@+id/btnStart"
+        app:layout_constraintTop_toBottomOf="@+id/btnStart"
+        app:layout_constraintLeft_toLeftOf="@+id/btnStart"
+        android:visibility="gone"/>
     <EditText
         android:id="@+id/etContent"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/et_bg"
+        android:maxHeight="@dimen/dp_150"
+        android:minHeight="@dimen/dp_100"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginLeft="@dimen/dp_6"
+        android:layout_marginRight="@dimen/dp_6"
+        android:padding="@dimen/dp_10"
         android:gravity="top"
-        android:hint="请输入发送的内容"
-        android:maxLines="10"
-        android:minHeight="60dp"
-        android:padding="6dp"
+        android:textSize="14sp"
+        android:hint="请输入要发送的内容"
+        android:background="@drawable/et_bg"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnConnect"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/etPort"/>
+    <Button
+        android:id="@+id/btnClear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="清除数据"
+        app:layout_constraintTop_toBottomOf="@+id/etContent"
+        style="@style/OnClick"/>
     <Button
         android:id="@+id/btnSend"
-        style="@style/OnClick"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="发送消息"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="发送"
+        app:layout_constraintTop_toBottomOf="@+id/etContent"
+        style="@style/OnClick"/>
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:scrollbars="vertical"
+        android:fadingEdge="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etContent"/>
-        <TextView
-            android:id="@+id/tvLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="收到消息："
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnSend"/>
-
+        app:layout_constraintTop_toBottomOf="@+id/btnSend"
+        app:layout_constraintBottom_toBottomOf="parent">
         <TextView
             android:id="@+id/tvContent"
-            android:scrollbars="vertical"
-            android:fadeScrollbars="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:background="@drawable/et_bg"
+            android:minHeight="@dimen/dp_100"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_6"
+            android:layout_marginRight="@dimen/dp_6"
+            android:padding="@dimen/dp_10"
             android:gravity="top"
-            android:maxLines="10"
-            android:minHeight="100dp"
-            android:padding="6dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvLabel"/>
-
-</android.support.constraint.ConstraintLayout>
+            android:textSize="14sp"
+            android:hint="消息日志"
+            android:background="@drawable/et_bg"
+            />
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

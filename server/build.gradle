@@ -1,9 +1,8 @@
 apply plugin: 'java-library'
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api deps.netty
+    api "io.netty:netty-all:$versions.netty"
 }
 
-sourceCompatibility = "8"
-targetCompatibility = "8"
+sourceCompatibility JavaVersion.VERSION_1_8
+targetCompatibility JavaVersion.VERSION_1_8

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ANetty</string>
+    <string name="digits_ip">0123456789.</string>
 </resources>

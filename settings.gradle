@@ -1,1 +1,24 @@
-include ':app', ':lib', ':server'
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven {
+            url "https://maven.aliyun.com/repository/public"
+        }
+        google()
+        mavenCentral()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        maven {
+            url "https://maven.aliyun.com/repository/public"
+        }
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "ANetty"
+include ':app'
+include ':anetty'
+include ':server'
