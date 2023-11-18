@@ -3,7 +3,7 @@
 ![Image](app/src/main/ic_launcher-web.png)
 
 [![Download](https://img.shields.io/badge/download-App-blue.svg)](https://raw.githubusercontent.com/jenly1314/ANetty/master/app/release/app-release.apk)
-[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/awebsocket)](https://repo1.maven.org/maven2/com/github/jenly1314/awebsocket)
+[![MavenCentral](https://img.shields.io/maven-central/v/com.github.jenly1314/anetty)](https://repo1.maven.org/maven2/com/github/jenly1314/anetty)
 [![JitPack](https://jitpack.io/v/jenly1314/ANetty.svg)](https://jitpack.io/#jenly1314/ANetty)
 [![CI](https://travis-ci.org/jenly1314/ANetty.svg?branch=master)](https://travis-ci.org/jenly1314/ANetty)
 [![CircleCI](https://circleci.com/gh/jenly1314/ANetty.svg?style=svg)](https://circleci.com/gh/jenly1314/ANetty)
