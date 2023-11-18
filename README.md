@@ -18,6 +18,7 @@ ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以�
 ## Gif 展示
 ![Image](GIF.gif)
 
+> 你也可以直接下载 [演示App](https://raw.githubusercontent.com/jenly1314/ANetty/master/app/release/app-release.apk) 体验效果
 
 ## 引入
 
@@ -34,16 +35,16 @@ ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以�
 
 2. 在Module的 **build.gradle** 里面添加引入依赖项
    ```gradle
-       // AndroidX
-       implementation 'com.github.jenly1314:anetty:1.1.0'
+   // ANetty
+   implementation 'com.github.jenly1314:anetty:1.1.0'
 
    ```
 
-## 示例
+## 使用
 
 代码示例
 
-> ANetty暂并不提供Netty服务端封装库，因为在真实的场景中，服务端一般都依赖项目对应的业务。为了方便演示客户端效果，有个简易的[服务端demo](server)，直接以Java的形式直接运行ANettyServer即可启动Netty服务即可。
+> ANetty暂并不提供Netty服务端封装库，因为在真实的场景中，服务端一般都依赖项目对应的业务。为了方便演示ANetty客户端，这里提供了一个简易的[服务端demo](server)；直接以Java的形式直接在main方法中直接运行ANettyServer即可启动Netty服务。（此Demo主要是为了方便测试与ANetty的客户端进行通信）
 
 Netty服务端：
 ```Java
@@ -115,6 +116,8 @@ Netty客户端：
    mNetty.close();    
 
 ```
+
+> 如需测试；可以在Netty服务端启动后；然后使用Netty客户端输入对应的连接地址和端口，即可与服务端进行通信。（也可直接使用[演示App](https://raw.githubusercontent.com/jenly1314/ANetty/master/app/release/app-release.apk)进行测试。）
 
 更多使用详情，请查看[app](app)中的源码使用示例或直接查看 [API帮助文档](https://jitpack.io/com/github/jenly1314/ANetty/latest/javadoc/)
 
