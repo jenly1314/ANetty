@@ -1,2 +1,5 @@
 jdk:
   - openjdk17
+install:
+  - echo "build"
+  - ./gradlew build
