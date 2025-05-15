@@ -7,7 +7,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/jenly1314/ANetty/gradle.yml?logo=github)](https://github.com/jenly1314/ANetty/actions/workflows/gradle.yml)
 [![Download](https://img.shields.io/badge/download-APK-brightgreen?logo=github)](https://raw.githubusercontent.com/jenly1314/ANetty/master/app/release/app-release.apk)
 [![API](https://img.shields.io/badge/API-21%2B-brightgreen?logo=android)](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels)
-[![License](https://img.shields.io/github/license/jenly1314/ANetty?logo=open-source-initiative)](https://opensource.org/licenses/LICENSE-2-0)
+[![License](https://img.shields.io/github/license/jenly1314/ANetty?logo=open-source-initiative)](https://opensource.org/licenses/apache-2-0)
 
 
 ANetty for Android 是基于Netty二次封装的Android链路通讯库，用以快速开发高性能，高可靠性的网络交互。在保证易于开发的同时还保证其应用的性能，稳定性和伸缩性。
